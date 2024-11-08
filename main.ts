@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from 'mongodb'
 import type { EventModel, InscriptionModel, UserModel } from "./types.ts";
-import { getOrganizer, getTodo } from "./resolves.ts";
+import { changeUser, getOrganizer, getTodo } from "./resolves.ts";
 
 const url = Deno.env.get("MONGO_URL")
 if(!url) {
@@ -26,7 +26,8 @@ const handler = async(req: Request):Promise<Response> => {
   if(method === "GET") {
     if(path === "/users") {
       const result = await userCollection.find().toArray()
-      return new Response(JSON.stringify(result))
+      const resultFinal = result.map(e => changeUser(e))
+      return new Response(JSON.stringify(resultFinal))
     } else if(path === "/events") {
       const result = await eventCollection.find().toArray()
       const resultFinal = await Promise.all(result.map(e => getOrganizer(e,userCollection)))

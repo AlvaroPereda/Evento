@@ -17,3 +17,24 @@ export type InscriptionModel = OptionalId<{
     event_id: ObjectId,
     date: Date
 }>
+
+export type User = {
+    id?: string,
+    name?: string,
+    email?: string,
+    phone?: string
+}
+
+export type Event = {
+    id?: string,
+    name?: string,
+    date?: Date,
+    organizer?: User
+}
+
+export type Inscription = {
+    id: string,
+    user_id: User,
+    event_id: Event,
+    date: Date
+}
