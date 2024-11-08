@@ -22,7 +22,6 @@ export const getTodo = async(
     
     const aux = await eventCollection.findOne({_id:ins.event_id})
     const user = await userCollection.findOne({_id:ins.user_id})
-    console.log(user)
     return ({
         id: ins._id.toString(),
         user_id: changeUser(user),
