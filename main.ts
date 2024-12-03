@@ -2,10 +2,7 @@ import { MongoClient, ObjectId } from 'mongodb'
 import type { EventModel, InscriptionModel, UserModel } from "./types.ts";
 import { changeUser, getOrganizer, getTodo } from "./resolves.ts";
 
-const url = Deno.env.get("MONGO_URL")
-if(!url) {
-  console.log("La url no existe")
-}
+const url = "mongodb+srv://aperedas:18062004@backend.61kmp.mongodb.net/?retryWrites=true&w=majority&appName=Backend"
 
 const client = new MongoClient(url);
 
