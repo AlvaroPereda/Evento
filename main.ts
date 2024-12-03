@@ -5,7 +5,6 @@ import { changeUser, getOrganizer, getTodo } from "./resolves.ts";
 const url = Deno.env.get("MONGO_URL")
 if(!url) {
   console.log("La url no existe")
-  Deno.exit(1)
 }
 
 const client = new MongoClient(url);
